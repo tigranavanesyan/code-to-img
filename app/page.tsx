@@ -1,7 +1,11 @@
+import CodeEditor from "@/components/CodeEditor";
+
 export default function Home() {
   return (
-    <div>
-      home
-    </div>
+    <main>
+      <div className="code-editor-ref">
+        <CodeEditor/>
+      </div>
+    </main>
   );
 }
