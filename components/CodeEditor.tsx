@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Resizable} from "re-resizable"
 import AceEditor from "react-ace";
 
@@ -27,11 +27,40 @@ interface CodeEditorProps {
 }
 
 function CodeEditor({ onCodeChange, language, theme, icon, background, currentPadding }:CodeEditorProps) {
+  const [width, setWidth] = useState(1000);
+  const [height, setHeight] = useState<number | null>(500);
+
+
+  // @ts-ignore
+  const handleResize = (evt, direction, ref, pos) => {
+    const newHeight = ref.style.height;
+    setHeight(parseInt(newHeight, 10));
+  };
+
+  const updateSize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  
   return (
     <Resizable
-        className="bg-slate-500"
+        className="resize-container relative bg-slate-500"
+        style={{
+          background:"red"
+        }}
         minHeight={200}
         minWidth={300}
+        maxWidth={1000}
+        defaultSize={{
+          width: width,
+          height: height || 500
+        }}
+        onResize={handleResize}
     
     >
         <div>
@@ -46,7 +75,7 @@ function CodeEditor({ onCodeChange, language, theme, icon, background, currentPa
                 showPrintMargin={false}
                 highlightActiveLine={false}
                 editorProps={{ $blockScrolling: true }}
-                className="ace-editor-container w-full"
+                className="ace-editor-container"
             />
         </div>
     </Resizable>
