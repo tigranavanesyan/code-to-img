@@ -50,12 +50,9 @@ function CodeEditor({ onCodeChange, language, theme, icon, background, currentPa
   return (
     <Resizable
         className="resize-container relative bg-slate-500"
-        style={{
-          background:"red"
-        }}
         minHeight={200}
         minWidth={300}
-        maxWidth={1000}
+        maxWidth={800}
         defaultSize={{
           width: width,
           height: height || 500
@@ -63,7 +60,22 @@ function CodeEditor({ onCodeChange, language, theme, icon, background, currentPa
         onResize={handleResize}
     
     >
-        <div>
+        <div className='code-block'>
+          <div className='code-title h-14 px-4 flex items-center justify-between bg-black bg-opacity-80'>
+            <div className='dots flex items-center gap-1'>
+              <div className='w-3 h-3 rounded-full bg-red-500'></div>
+              <div className='w-3 h-3 rounded-full bg-yellow-500'></div>
+              <div className='w-3 h-3 rounded-full bg-green-500'></div>
+            </div>
+
+            <div className='input-control w-full'>
+              <input type="text" className='w-full text-[hsla(0,0%,100%,.6)] outline-none font-medium text-center bg-transparent' />
+            </div>
+            <div className='icon flex items-center justify-center p-1 bg-black bg-opacity-30 rounded-sm'>
+              <img src={icon} alt={icon} className='w-5 h-5' />
+            </div>
+
+          </div>
             <AceEditor
                 value = "function() { return 'Hello World' }"
                 name="UNIQUE_ID_OF_DIV"

@@ -7,6 +7,14 @@ body {
     color: #848484;
 }
 
+.code-title {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border: 2px solid rgba(249, 249, 249, 0.08);
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
 
 .ace-editor-container {
     width: 100% !important;
@@ -39,4 +47,17 @@ body {
 
   .ace_scroller {
     width: 100% !important;
+  }
+
+  .dropdown-title {
+    padding: 0.25rem 0.3rem 0.3rem 0.5rem;
+    height: 37px;
+    border-radius: 3px;
+    border: 1px solid rgba(249, 249, 249, 0.08);
+  
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
   }
