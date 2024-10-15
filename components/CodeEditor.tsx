@@ -19,7 +19,6 @@ import "ace-builds/src-noconflict/theme-twilight";
 import { initialCode } from "@/utils/utilities";
 
 interface CodeEditorProps {
-  onCodeChange: (code: string) => void;
   language: string;
   theme: string;
   icon: string;
@@ -28,7 +27,6 @@ interface CodeEditorProps {
 }
 
 function CodeEditor({
-  onCodeChange,
   language,
   theme,
   icon,
@@ -97,7 +95,7 @@ function CodeEditor({
         </div>
         <AceEditor
           value={code}
-          onChange={()=>{}}
+          onChange={handleCodeChange}
           name="UNIQUE_ID_OF_DIV"
           fontSize={16}
           theme={theme}
