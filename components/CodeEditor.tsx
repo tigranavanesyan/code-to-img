@@ -80,7 +80,7 @@ function CodeEditor({ onCodeChange, language, theme, icon, background, currentPa
                 value = "function() { return 'Hello World' }"
                 name="UNIQUE_ID_OF_DIV"
                 fontSize={16}
-                theme='monokai'
+                theme={theme}
                 mode={language.toLowerCase()}
                 showGutter={false}
                 wrapEnabled={true}

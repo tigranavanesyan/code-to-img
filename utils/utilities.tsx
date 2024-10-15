@@ -24,3 +24,5 @@ export const languages = [
       icon: "icons/typescript.svg",
     },
   ];
+
+  export const themes = ["monokai", "twilight", "terminal"];
