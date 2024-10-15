@@ -58,6 +58,10 @@ function CodeEditor({ onCodeChange, language, theme, icon, background, currentPa
           height: height || 500
         }}
         onResize={handleResize}
+        style={{
+          background:background,
+          padding:"20px"
+        }}
     
     >
         <div className='code-block'>
