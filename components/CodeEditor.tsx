@@ -59,12 +59,11 @@ function CodeEditor({ onCodeChange, language, theme, icon, background, currentPa
         }}
         onResize={handleResize}
         style={{
-          background:background,
-          padding:"20px"
+          background:background
         }}
     
     >
-        <div className='code-block'>
+        <div className='code-block' style={{padding:currentPadding}}>
           <div className='code-title h-14 px-4 flex items-center justify-between bg-black bg-opacity-80'>
             <div className='dots flex items-center gap-1'>
               <div className='w-3 h-3 rounded-full bg-red-500'></div>
