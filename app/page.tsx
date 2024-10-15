@@ -11,7 +11,7 @@ import { useRef, useState } from "react";
 import html2canvas from "html2canvas";
 
 export default function Home() {
-  const editorRef = useRef(null)
+  const editorRef = useRef(null);
 
   const [language, setLanguage] = useState(languages[0].name);
   const [theme, setTheme] = useState(themes[0]);
@@ -21,18 +21,41 @@ export default function Home() {
   const [currentPadding, setCurrentPadding] = useState(paddings[0]);
 
   const exportPng = async () => {
-    const editorElem = editorRef.current
+    //hide elemnets
+    const handleElems = document.querySelectorAll(".handle") as any;
+    const cursorElem = document.querySelector(".ace_cursor") as any;
+    const codetitle = document.querySelector(".code-title") as any;
+    const codeEditor = document.querySelector(".ace_editor") as any;
 
-    if(editorElem){
-      const canvas = await html2canvas(editorElem)
-      const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+    handleElems.forEach((elem: any) => {
+      elem.style.display = "none";
+    });
+    cursorElem.style.display = "none";
+    codetitle.style.boxShadow = "none";
+    codeEditor.style.boxShadow = "none";
 
-      const link = document.createElement('a')
-      link.download = 'code.png'
-      link.href = image
-      link.click()
+    const editorElem = editorRef.current;
+
+    if (editorElem) {
+      const canvas = await html2canvas(editorElem);
+      const image = canvas
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
+
+      const link = document.createElement("a");
+      link.download = "code.png";
+      link.href = image;
+      link.click();
     }
-  }
+
+    //show elements
+    handleElems.forEach((elem: any) => {
+      elem.style.display = "block";
+    });
+    cursorElem.style.display = "block";
+    codetitle.style.boxShadow = "0 3px 10px rgba(0, 0, 0, 0.2)";
+    codeEditor.style.boxShadow = "2px 3px 10px rgba(0, 0, 0, 0.2)";
+  };
 
   const [code, setCode] = useState("");
   return (
@@ -54,8 +77,11 @@ export default function Home() {
           setCurrentPadding={setCurrentPadding}
         />
         <div className="export-btn self-center ml-auto">
-          <button onClick={exportPng} className="flex items-center gap-3 py-2 px-3 rounded-md text-sm bg-blue-400 text-blue-400 font-medium bg-opacity-10 hover:opacity-80 hover:text-slate-50 ease-in-out transition-all duration-300">
-            <Download/> Export PNG
+          <button
+            onClick={exportPng}
+            className="flex items-center gap-3 py-2 px-3 rounded-md text-sm bg-blue-400 text-blue-400 font-medium bg-opacity-10 hover:opacity-80 hover:text-slate-50 ease-in-out transition-all duration-300"
+          >
+            <Download /> Export PNG
           </button>
         </div>
       </header>
