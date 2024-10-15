@@ -40,3 +40,17 @@ export const languages = [
     "linear-gradient(140deg, rgb(165, 142, 251), rgb(233, 191, 248))",
     "linear-gradient(270deg,#514a9d,#24c6dc)",
   ];
+
+
+  export const initialCode = `function reverseString() {
+    const userInput = prompt("Enter a string to reverse:");
+  
+    if (!userInput) {
+      return "You didn't enter anything!";
+    }
+  
+    const reversed = userInput.split('').reverse().join('');
+    return \`Reversed string: \${reversed}\`;
+ }
+  
+console.log(reverseString());`;
